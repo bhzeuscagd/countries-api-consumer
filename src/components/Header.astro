@@ -1,0 +1,28 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<header
+    class="bg-white dark:bg-blue-900 w-full shadow-sm shadow-gray-300 dark:shadow-none transition-colors duration-200"
+>
+    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+        <h1 class="font-bold text-lg dark:text-white">Where in the world?</h1>
+        <button
+            id="theme-toggle"
+            class="font-semibold text-sm flex items-center gap-2 dark:text-white hover:opacity-80 transition-opacity"
+        >
+            <Icon id="theme-icon" name="moon" class="w-4 h-4" />
+            <span id="theme-text">Dark Mode</span>
+        </button>
+    </div>
+</header>
+
+<script>
+    import { setupThemeToggle } from "../utils/functions";
+
+    // Run setup on load
+    setupThemeToggle();
+
+    // Run setup on Astro view transitions (if enabled later)
+    document.addEventListener("astro:page-load", setupThemeToggle);
+</script>

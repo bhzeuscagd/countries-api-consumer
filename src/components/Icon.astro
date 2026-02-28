@@ -1,0 +1,13 @@
+---
+export interface Props {
+    name: string;
+    class?: string;
+    id?: string;
+}
+
+const { name, class: className, id } = Astro.props;
+---
+
+<svg id={id} class={className} aria-hidden="true">
+    <use href={`/atlas.svg#${name}`}></use>
+</svg>

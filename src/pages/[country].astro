@@ -1,0 +1,159 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import { Image } from "astro:assets";
+import { getCountryDetails, createSlug } from "../utils/countries";
+import data from "../data/data.json";
+
+// Tell Astro to pre-render a route for every country in the JSON file
+export async function getStaticPaths() {
+    return data.map((c: any) => ({
+        params: { country: createSlug(c.name) },
+        props: { name: c.name },
+    }));
+}
+
+const { name } = Astro.props;
+const details = getCountryDetails(name);
+
+if (!details) {
+    return Astro.redirect("/404");
+}
+
+// Map the border 3-letter codes to their full country names and slugs
+const borderCountries =
+    details.borders?.map((alpha3) => {
+        const found = data.find((c: any) => c.alpha3Code === alpha3);
+        return {
+            name: found ? found.name : alpha3,
+            slug: found ? createSlug(found.name) : alpha3,
+        };
+    }) || [];
+---
+
+<Layout>
+    <Header />
+    <main
+        class="container mx-auto px-6 md:px-4 pt-12 text-gray-950 dark:text-white pb-24"
+    >
+        <!-- Back Button -->
+        <a
+            href="/"
+            class="inline-flex items-center justify-center gap-3 px-8 py-2 md:py-3 shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-none bg-white dark:bg-blue-900 rounded-md transition-transform hover:scale-105 mb-16 md:mb-20 text-sm md:text-base font-light dark:text-gray-200"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Back
+        </a>
+
+        <!-- Details Container -->
+        <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32 items-center"
+        >
+            <!-- Flag -->
+            <Image
+                src={details.flagUrl}
+                alt={`Flag of ${details.name}`}
+                width={800}
+                height={550}
+                class="w-full object-cover shadow-sm rounded-md"
+            />
+
+            <!-- Content -->
+            <div class="flex flex-col gap-8 md:gap-10">
+                <h1 class="text-3xl md:text-4xl font-extrabold">
+                    {details.name}
+                </h1>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-4">
+                    <div class="flex flex-col gap-3">
+                        <p class="font-semibold">
+                            Native Name: <span
+                                class="font-light text-gray-500 dark:text-gray-300"
+                                >{details.nativeName}</span
+                            >
+                        </p>
+                        <p class="font-semibold">
+                            Population: <span
+                                class="font-light text-gray-500 dark:text-gray-300"
+                                >{details.population}</span
+                            >
+                        </p>
+                        <p class="font-semibold">
+                            Region: <span
+                                class="font-light text-gray-500 dark:text-gray-300"
+                                >{details.region}</span
+                            >
+                        </p>
+                        <p class="font-semibold">
+                            Sub Region: <span
+                                class="font-light text-gray-500 dark:text-gray-300"
+                                >{details.subregion}</span
+                            >
+                        </p>
+                        <p class="font-semibold">
+                            Capital: <span
+                                class="font-light text-gray-500 dark:text-gray-300"
+                                >{details.capital}</span
+                            >
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <p class="font-semibold">
+                            Top Level Domain: <span
+                                class="font-light text-gray-500 dark:text-gray-300"
+                                >{details.topLevelDomain.join(", ")}</span
+                            >
+                        </p>
+                        <p class="font-semibold">
+                            Currencies: <span
+                                class="font-light text-gray-500 dark:text-gray-300"
+                                >{details.currencies.join(", ")}</span
+                            >
+                        </p>
+                        <p class="font-semibold">
+                            Languages: <span
+                                class="font-light text-gray-500 dark:text-gray-300"
+                                >{details.languages.join(", ")}</span
+                            >
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Border Countries -->
+                {
+                    borderCountries.length > 0 && (
+                        <div class="flex flex-col lg:flex-row gap-4 mt-4">
+                            <h2 class="font-semibold min-w-max text-lg lg:text-base lg:pt-1">
+                                Border Countries:
+                            </h2>
+
+                            <div class="flex flex-wrap gap-3">
+                                {borderCountries.map((border) => (
+                                    <a
+                                        href={`/${border.slug}`}
+                                        class="px-6 py-1.5 shadow-[0_0_5px_rgba(0,0,0,0.1)] dark:shadow-none bg-white dark:bg-blue-900 rounded-sm text-sm font-light transition-transform hover:scale-105 text-center text-gray-950 dark:text-gray-200"
+                                    >
+                                        {border.name}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+    </main>
+</Layout>

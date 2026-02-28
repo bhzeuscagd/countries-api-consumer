@@ -1,11 +1,53 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Search from "../components/Search.astro";
+import Filter from "../components/Filter.astro";
+import Card from "../components/Card.astro";
 
+import { getCountriesForCards } from "../utils/countries";
+
+const allCountries = getCountriesForCards();
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<Header />
+	<main class="container mx-auto px-4 mt-8 md:mt-12">
+		<!-- Search & Filter Area -->
+		<div
+			class="flex flex-col md:flex-row md:items-center md:justify-between w-full gap-10 md:gap-0"
+		>
+			<Search />
+			<Filter />
+		</div>
+
+		<!-- Grid of Cards -->
+		<div
+			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 mt-12 pb-12"
+		>
+			{
+				allCountries.map((country) => (
+					<Card
+						name={country.name}
+						population={country.population}
+						region={country.region}
+						capital={country.capital}
+						flagUrl={country.flagUrl}
+					/>
+				))
+			}
+		</div>
+	</main>
 </Layout>
+
+<script>
+	import { setupFilters } from "../utils/functions";
+
+	// Run setup on load
+	setupFilters();
+
+	// Support view transitions if enabled
+	document.addEventListener("astro:page-load", setupFilters);
+</script>

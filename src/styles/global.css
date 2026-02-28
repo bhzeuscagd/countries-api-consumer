@@ -1,0 +1,17 @@
+@import '@fontsource/nunito-sans';
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Colors from style guide */
+  --color-blue-900: hsl(209, 23%, 22%); /* Dark Mode Elements */
+  --color-blue-950: hsl(207, 26%, 17%); /* Dark Mode Background */
+  --color-gray-950: hsl(200, 15%, 8%); /* Light Mode Text */
+  --color-gray-400: hsl(0, 0%, 50%); /* Light Mode Input */
+  --color-gray-50: hsl(0, 0%, 99%); /* Light Mode Background */
+  --color-white: hsl(0, 100%, 100%); /* Dark Mode Text & Light Mode Elements */
+
+  /* Typography */
+  --font-sans: 'Nunito Sans', sans-serif;
+}

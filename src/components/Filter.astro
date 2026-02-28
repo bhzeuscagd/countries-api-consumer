@@ -1,0 +1,56 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<div class="relative w-[200px] z-10">
+    <!-- Checkbox input for pure CSS toggle state -->
+    <input type="checkbox" id="filter-toggle" class="sr-only peer" />
+
+    <!-- Label acts as the clickable dropdown button -->
+    <label
+        for="filter-toggle"
+        class="w-full shadow-md shadow-gray-200 dark:shadow-none bg-white dark:bg-blue-900 px-6 py-4 rounded-md text-gray-950 dark:text-white transition-colors duration-200 cursor-pointer flex justify-between items-center select-none"
+    >
+        <span>Filter by Region</span>
+        <Icon
+            name="chevron-down"
+            class="w-4 h-4 transition-transform duration-200 peer-checked:rotate-180"
+        />
+    </label>
+
+    <!-- Dropdown Menu -->
+    <ul
+        class="absolute top-full left-0 right-0 mt-1 shadow-md shadow-gray-200 dark:shadow-none bg-white dark:bg-blue-900 rounded-md py-4 text-gray-950 dark:text-white transition-all duration-200 opacity-0 invisible translate-y-[-10px] peer-checked:opacity-100 peer-checked:visible peer-checked:translate-y-0"
+    >
+        <li
+            class="px-6 py-2 hover:bg-gray-100 dark:hover:bg-blue-950 cursor-pointer"
+        >
+            All
+        </li>
+        <li
+            class="px-6 py-2 hover:bg-gray-100 dark:hover:bg-blue-950 cursor-pointer"
+        >
+            Africa
+        </li>
+        <li
+            class="px-6 py-2 hover:bg-gray-100 dark:hover:bg-blue-950 cursor-pointer"
+        >
+            Americas
+        </li>
+        <li
+            class="px-6 py-2 hover:bg-gray-100 dark:hover:bg-blue-950 cursor-pointer"
+        >
+            Asia
+        </li>
+        <li
+            class="px-6 py-2 hover:bg-gray-100 dark:hover:bg-blue-950 cursor-pointer"
+        >
+            Europe
+        </li>
+        <li
+            class="px-6 py-2 hover:bg-gray-100 dark:hover:bg-blue-950 cursor-pointer"
+        >
+            Oceania
+        </li>
+    </ul>
+</div>
