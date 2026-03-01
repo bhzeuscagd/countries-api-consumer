@@ -1,6 +1,6 @@
-# Frontend Mentor - REST Countries API with color theme switcher
+# countries-api-consumer
 
-This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -92,5 +92,3 @@ For future iterations or projects, I plan to:
 
 - Frontend Mentor - [@bhzeuscagd](https://www.frontendmentor.io/profile/bhzeuscagd)
 - Portfolio - [cagd](https://portfolio-cagd.vercel.app/)
-
-# countries-api-consumer
