@@ -30,7 +30,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: *(Coming Soon)*
-- Live Site URL: *(Coming Soon)*
+- Live Site URL: [https://countries-api-gray-ten.vercel.app](https://countries-api-gray-ten.vercel.app)
 
 ## My process
 
