@@ -39,7 +39,7 @@ export const setupThemeToggle = () => {
 
 export const setupFilters = () => {
     const filterLabel = document.querySelector('label[for="filter-toggle"] span');
-    const filterOptions = document.querySelectorAll('#filter-toggle ~ ul li');
+    const filterOptions = document.querySelectorAll('#filter-toggle ~ ul li button');
     const countryCards = document.querySelectorAll('.country-card');
     const searchInput = document.getElementById('search-input') as HTMLInputElement;
 
