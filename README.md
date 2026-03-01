@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: *(Coming Soon)*
+- Solution URL: [https://github.com/bhzeuscagd/countries-api-consumer](https://github.com/bhzeuscagd/countries-api-consumer)
 - Live Site URL: [https://countries-api-gray-ten.vercel.app](https://countries-api-gray-ten.vercel.app)
 
 ## My process
