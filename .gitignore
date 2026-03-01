@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Challenge Source Folder
+rest-countries-api-with-color-theme-switcher-master/
